@@ -236,34 +236,12 @@ struct ContentView: View {
                 .fontWeight(.bold)
         }
         Divider()
-        VStack { //VStack for points
-            VStack { //For home team points
-                Text("Home:")
-                Text("\(home_points)")
-                    .font(.title2)
+        HStack { //Horizontal stack for points
+            VStack { //Vertical stack for away team points
+                Text("Away: \(away_points)")
+                    .font(.title)
                     .fontWeight(.bold)
-                Button(action: {
-                    home_pts_plus()
-                }) {
-                    Text("Home +")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                Button(action: {
-                    home_pts_min()
-                }) {
-                    Text("Home -")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.red)
-                }
-                }
-            }
-            VStack { //For away team points
-                Text("Away:")
-                Text("\(away_points)")
-                    .font(.title2)
-                    .fontWeight(.bold)
+                //Start button
                 Button(action: {
                     away_pts_plus()
                 }) {
@@ -271,6 +249,9 @@ struct ContentView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .foregroundColor(.blue)
+                }
+                //End Button
+                //Start Button
                 Button(action: {
                     away_pts_min()
                 }) {
@@ -279,7 +260,34 @@ struct ContentView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.red)
                 }
+                //End Button
+            }
+            Divider()
+                .frame(height: 120)
+            VStack { //Vertical stack for home team points
+                Text("Away: \(home_points)")
+                    .font(.title)
+                    .fontWeight(.bold)
+                //Start button
+                Button(action: {
+                    home_pts_plus()
+                }) {
+                    Text("Home +")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.blue)
                 }
+                //End Button
+                //Start Button
+                Button(action: {
+                    home_pts_min()
+                }) {
+                    Text("Home -")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.red)
+                }
+                //End Button
             }
         }
         .padding()
