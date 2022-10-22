@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     // Variables
+    let ut = Ump_TrackerApp.Count()
     @State var strikes : Int = 0
     @State var balls : Int = 0
     @State var outs : Int = 0
@@ -18,6 +19,7 @@ struct ContentView: View {
     @State var AWAY_TEAM : String = ""
     @State var home_points : Int = 0
     @State var away_points : Int = 0
+    let umptracker = Ump_TrackerApp()
     
     // Functions
     
@@ -103,6 +105,11 @@ struct ContentView: View {
         }
     }
     
+    func inning_reset() -> Void {
+        inning = 1
+        top_inning = true
+    }
+    
     //      Functions for Points
     func home_pts_plus() -> Void {
         home_points += 1
@@ -126,10 +133,18 @@ struct ContentView: View {
         }
     }
     
-    
+  //View
     
     var body: some View {
         VStack (alignment: .leading) { //VStack for inning
+            Button(action: {
+                inning_reset()
+            }) {
+                Text("Reset Innings")
+                    .font(.callout)
+                    .fontWeight(.bold)
+                    .foregroundColor(.red)
+            }
             Text("Inning: \(inning)")
                 .font(.title2)
                 .fontWeight(.bold)
@@ -265,7 +280,7 @@ struct ContentView: View {
             Divider()
                 .frame(height: 120)
             VStack { //Vertical stack for home team points
-                Text("Away: \(home_points)")
+                Text("Home: \(home_points)")
                     .font(.title)
                     .fontWeight(.bold)
                 //Start button
