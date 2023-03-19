@@ -37,6 +37,10 @@ struct ContentView: View {
             strikes = 0
         }
     }
+    
+    func strike_clr() -> Void {
+        strikes = 0
+    }
     //          End Function
     
     //      Function for Outs
@@ -58,9 +62,13 @@ struct ContentView: View {
     
     func out_min() -> Void {
         outs -= 1
-        if (outs <= 3) {
+        if (outs < 0) {
             outs = 0
         }
+    }
+    
+    func out_clr() -> Void {
+        outs = 0
     }
     //         End Function
     
@@ -78,6 +86,10 @@ struct ContentView: View {
         if (balls <= 0) {
             balls = 0
         }
+    }
+    
+    func ball_clr() -> Void {
+        balls = 0
     }
     
     //      Functions for innings
@@ -131,6 +143,12 @@ struct ContentView: View {
         if (away_points <= 0) {
             away_points = 0
         }
+    }
+    
+    func clr_all() -> Void {
+        outs = 0
+        strikes = 0
+        balls = 0
     }
     
   //View
@@ -249,6 +267,13 @@ struct ContentView: View {
             Text("\(outs)")
                 .font(.title)
                 .fontWeight(.bold)
+            
+            Menu("Clear") {
+                Button("Outs", action: out_clr)
+                Button("Balls", action: ball_clr)
+                Button("Strikes", action: strike_clr)
+                Button("All", action: clr_all)
+            }
         }
         Divider()
         HStack { //Horizontal stack for points
@@ -284,6 +309,7 @@ struct ContentView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 //Start button
+                
                 Button(action: {
                     home_pts_plus()
                 }) {
